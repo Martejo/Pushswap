@@ -24,12 +24,14 @@ SRCS	=	\
 			\
 			nbr/ft_atoi.c\
 			nbr/ft_itoa.c\
+			nbr/ft_atol.c\
 			\
 			others/ft_isprint.c\
 			others/ft_isdigit.c\
 			others/ft_isalnum.c\
 			others/ft_isalpha.c\
 			others/ft_isascii.c\
+			others/ft_isspace.c\
 			\
 			str/ft_strjoin.c \
 			str/ft_strdup.c\

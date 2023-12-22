@@ -6,7 +6,7 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:19:21 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/08 13:24:36 by gemartel         ###   ########.fr       */
+/*   Updated: 2023/12/21 17:27:07 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long	ft_atol(const char *s)
 	}
 	while (ft_isdigit(s[i]))
 	{
-		result = result * 10 + (s[i] - 0);
+		result = result * 10 + (s[i] - '0');
 		i++;
 	}
 	return (result * sign);

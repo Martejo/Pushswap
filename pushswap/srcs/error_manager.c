@@ -6,18 +6,18 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:28:45 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/08 15:48:04 by gemartel         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:51:59 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 bool	error_syntax(const char *str)
 {
 	int i;
 
 	i = 0;
-	if (!(str[i] == '+' || str[i] == '-' || !ft_isdigit(str[i])))
+	if (!(str[i] == '+' || str[i] == '-' || ft_isdigit(str[i])))
 		return (true);
 	if ((str[i] == '+' || str[i] == '-') && !ft_isdigit(str[i + 1]))
 		return (true); // a voir plus tard
@@ -59,8 +59,23 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack_node **a, char *error_msg)
+void	free2d(char **str)
 {
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+void	free_errors(t_stack_node **a, char *error_msg, char **str, bool free_mod)
+{
+	if (free_mod)
+		free2d(str);
 	free_stack(a);
 	ft_putstr_fd(error_msg, 2);
 	exit(EXIT_FAILURE);
