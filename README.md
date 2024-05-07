@@ -1,4 +1,4 @@
-### Push_swap
+## Push_swap
 
 The “push_swap” project is an exercise in sorting data on a stack with a limited set of operations, while minimizing the number of actions. The project uses two stacks, called A and B. The aim is to receive a series of disordered numbers on stack A and sort them using only the following operations:
 
@@ -13,3 +13,9 @@ The “push_swap” project is an exercise in sorting data on a stack with a lim
 - **rra**: `reverse rotate a` - Shift down all elements of stack A by 1. The last element becomes the first one.
 - **rrb**: `reverse rotate b` - Shift down all elements of stack B by 1. The last element becomes the first one.
 - **rrr**: `rra` and `rrb` at the same time.
+
+### resource:
+
+https://www.youtube.com/watch?v=wRvipSG4Mmk&t=182s
+
+https://medium.com/@ayogun/push-swap-c1f5d2d41e97
