@@ -6,14 +6,13 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:42:29 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/22 11:42:29 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:09:12 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-void	*get_cheapeast(t_stack_node *stack)
+void	*get_cheapeast(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -26,7 +25,7 @@ void	*get_cheapeast(t_stack_node *stack)
 	return (NULL);
 }
 
-void	rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest)
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*b != cheapest->target_node && *a != cheapest)
 		rr(a, b, true);
@@ -34,7 +33,7 @@ void	rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest)
 	init_index(*b);
 }
 
-void	rev_rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest)
+void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*b != cheapest->target_node && *a != cheapest)
 		rrr(a, b, true);
@@ -42,22 +41,20 @@ void	rev_rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest)
 	init_index(*b);
 }
 
-void min_on_top(t_stack_node **a)
+void	min_on_top(t_stack **a)
 {
-    while (1)
-    {
-        t_stack_node *minNode = find_min(*a);
+	t_stack	*min_node;
 
-        if (!minNode) // Si la liste est vide, il n'y a rien à faire.
-            return;
-
-        if ((*a)->nbr == minNode->nbr) // Si le minimum est déjà en haut, nous avons terminé.
-            break;
-
-        // Le minimum n'est pas en haut, donc nous devons décider d'utiliser ra ou rra.
-        if (minNode->above_median)
-            ra(a, true);
-        else
-            rra(a, true);
-    }
+	while (1)
+	{
+		min_node = find_min(*a);
+		if (!min_node)
+			return ;
+		if ((*a)->nbr == min_node->nbr)
+			break ;
+		if (min_node->above_median)
+			ra(a, true);
+		else
+			rra(a, true);
+	}
 }

@@ -6,14 +6,13 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:39:22 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/22 11:41:45 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:11:20 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-void	set_stack(t_stack_node *a, t_stack_node *b, char stack_name)
+void	set_stack(t_stack *a, t_stack *b, char stack_name)
 {
 	if (stack_name == 'b')
 	{
@@ -31,27 +30,28 @@ void	set_stack(t_stack_node *a, t_stack_node *b, char stack_name)
 	}
 }
 
-void	mv_a_to_b(t_stack_node **a, t_stack_node **b)
+void	mv_a_to_b(t_stack **a, t_stack **b)
 {
-	t_stack_node *cheapest;
+	t_stack	*cheapest;
 
 	cheapest = get_cheapeast(*a);
 	if (cheapest->above_median && cheapest->target_node->above_median)
 		rotate_both(a, b, cheapest);
-	else if (!(cheapest->above_median) && !(cheapest->target_node->above_median))
+	else if (!(cheapest->above_median)
+		&& !(cheapest->target_node->above_median))
 		rev_rotate_both(a, b, cheapest);
 	prep_for_push(a, cheapest, 'a');
 	prep_for_push(b, cheapest->target_node, 'b');
 	pb(a, b, true);
 }
 
-void	mv_b_to_a(t_stack_node **a, t_stack_node **b)
+void	mv_b_to_a(t_stack **a, t_stack **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 	pa(a, b, true);
 }
 
-void	prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name)
+void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -68,11 +68,11 @@ void	prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name
 				rb(stack, true);
 			else
 				rrb(stack, true);
-		}	
+		}
 	}
 }
 
-void	sort_stack(t_stack_node **a , t_stack_node **b)
+void	sort_stack(t_stack **a, t_stack **b)
 {
 	size_t	len_a;
 

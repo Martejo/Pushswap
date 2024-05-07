@@ -6,7 +6,7 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:28:45 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/21 16:51:59 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:07:44 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	error_syntax(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!(str[i] == '+' || str[i] == '-' || ft_isdigit(str[i])))
 		return (true);
 	if ((str[i] == '+' || str[i] == '-') && !ft_isdigit(str[i + 1]))
-		return (true); // a voir plus tard
+		return (true);
 	while (str[++i])
 	{
 		if (!(ft_isdigit(str[i])))
@@ -29,7 +29,7 @@ bool	error_syntax(const char *str)
 	return (false);
 }
 
-bool	error_duplicate(t_stack_node *a, int n)
+bool	error_duplicate(t_stack *a, int n)
 {
 	if (!a)
 		return (false);
@@ -42,11 +42,11 @@ bool	error_duplicate(t_stack_node *a, int n)
 	return (false);
 }
 
-void	free_stack(t_stack_node **stack)
+void	free_stack(t_stack **stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*current;
-	
+	t_stack	*tmp;
+	t_stack	*current;
+
 	if (!stack)
 		return ;
 	current = *stack;
@@ -72,7 +72,7 @@ void	free2d(char **str)
 	free(str);
 }
 
-void	free_errors(t_stack_node **a, char *error_msg, char **str, bool free_mod)
+void	free_errors(t_stack **a, char *error_msg, char **str, bool free_mod)
 {
 	if (free_mod)
 		free2d(str);

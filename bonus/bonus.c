@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 11:13:07 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/22 12:58:53 by gemartel         ###   ########.fr       */
+/*   Created: 2024/01/03 11:06:37 by gemartel          #+#    #+#             */
+/*   Updated: 2024/01/03 11:08:06 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-int	do_commands(char *line, t_stack_node **stack_a, t_stack_node **stack_b)
+int	do_commands(char *line, t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_strcmp(line, "sa\n") == 0)
 		sa(stack_a, false);
@@ -42,10 +41,10 @@ int	do_commands(char *line, t_stack_node **stack_a, t_stack_node **stack_b)
 	return (1);
 }
 
-void	init_stack_checker(t_stack_node **stack, char **argv, bool free_mod)
+void	init_stack_checker(t_stack **stack, char **argv, bool free_mod)
 {
 	long	n;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (argv[i])
@@ -66,8 +65,7 @@ void	init_stack_checker(t_stack_node **stack, char **argv, bool free_mod)
 		free2d(argv);
 }
 
-
-void	checker_res(t_stack_node **a, t_stack_node **b)
+void	checker_res(t_stack **a, t_stack **b)
 {
 	if (stack_is_sorted(*a))
 		ft_printf("OK\n");
@@ -78,11 +76,12 @@ void	checker_res(t_stack_node **a, t_stack_node **b)
 	if (*b)
 		free_stack(b);
 }
+
 int	main(int argc, char **argv)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	char			*line;
+	t_stack	*a;
+	t_stack	*b;
+	char	*line;
 
 	a = NULL;
 	b = NULL;
@@ -92,17 +91,16 @@ int	main(int argc, char **argv)
 		init_stack(&a, ft_split(argv[1], ' '), true);
 	else
 		init_stack(&a, argv + 1, false);
-	
 	line = get_next_line(0);
 	while (line != NULL)
 	{
-			if (do_commands(line, &a, &b) == 0)
-			{
-				free_stack(&b);
-				free_errors(&a, "Error", NULL, false);
-			}
-			free(line);
-			line = get_next_line(0);
+		if (do_commands(line, &a, &b) == 0)
+		{
+			free_stack(&b);
+			free_errors(&a, "Error", NULL, false);
+		}
+		free(line);
+		line = get_next_line(0);
 	}
 	checker_res(&a, &b);
 	return (0);

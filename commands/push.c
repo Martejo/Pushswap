@@ -6,15 +6,15 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:36:51 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/22 11:36:35 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:06:39 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
+#include "../include/push_swap.h"
 
-void	push_node(t_stack_node **dest, t_stack_node **src)
+void	push_node(t_stack **dest, t_stack **src)
 {
-	t_stack_node	*tmp;
+	t_stack	*tmp;
 
 	tmp = NULL;
 	if (!(*src))
@@ -25,14 +25,14 @@ void	push_node(t_stack_node **dest, t_stack_node **src)
 	(*dest) = tmp;
 }
 
-void	pa(t_stack_node **a, t_stack_node **b, bool print)
+void	pa(t_stack **a, t_stack **b, bool print)
 {
 	push_node(a, b);
 	if (print)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack_node **a, t_stack_node **b, bool print)
+void	pb(t_stack **a, t_stack **b, bool print)
 {
 	push_node(b, a);
 	if (print)

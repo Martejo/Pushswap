@@ -6,20 +6,20 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:43:51 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/21 17:29:39 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:07:58 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	add_node(t_stack_node **stack, int n)
+int	add_node(t_stack **stack, int n)
 {
-	t_stack_node *node;
-	t_stack_node *last_node;
-	
+	t_stack	*node;
+	t_stack	*last_node;
+
 	if (!stack)
 		return (-1);
-	node = (t_stack_node*)malloc(1 * sizeof(t_stack_node));
+	node = (t_stack *)malloc(1 * sizeof(t_stack));
 	if (!node)
 		return (-1);
 	node->next = NULL;
@@ -34,17 +34,17 @@ int	add_node(t_stack_node **stack, int n)
 	return (1);
 }
 
-
-void	init_stack(t_stack_node **stack, char **argv, bool free_mod)
+void	init_stack(t_stack **stack, char **argv, bool free_mod)
 {
 	long	n;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			free_errors(stack, "Wrong syntax, please try again.\n", argv, free_mod);
+			free_errors(stack, "Wrong syntax, please try again.\n",
+				argv, free_mod);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(stack, "Error: int overflow.\n", argv, free_mod);

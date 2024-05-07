@@ -6,20 +6,18 @@
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:10:48 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/21 18:37:40 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:10:14 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-void	set_target_for_a(t_stack_node *a, t_stack_node *b)
+void	set_target_for_a(t_stack *a, t_stack *b)
 {
-	t_stack_node	*current_b;
-	t_stack_node	*target_node;
-	int	target;
+	t_stack	*current_b;
+	t_stack	*target_node;
+	int		target;
 
-	
 	if (!a || !b)
 		return ;
 	while (a)
@@ -43,13 +41,12 @@ void	set_target_for_a(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_target_for_b(t_stack_node *a, t_stack_node *b)
+void	set_target_for_b(t_stack *a, t_stack *b)
 {
-	t_stack_node	*current_a;
-	t_stack_node	*target_node;
-	int	target;
+	t_stack	*current_a;
+	t_stack	*target_node;
+	int		target;
 
-	
 	if (!a || !b)
 		return ;
 	while (b)
@@ -73,7 +70,7 @@ void	set_target_for_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	init_index(t_stack_node *stack)
+void	init_index(t_stack *stack)
 {
 	int	median;
 	int	i;
@@ -94,18 +91,17 @@ void	init_index(t_stack_node *stack)
 	}
 }
 
-void	push_cost_analysis(t_stack_node *a, t_stack_node  *b)
+void	push_cost_analysis(t_stack *a, t_stack *b)
 {
 	int	len_a;
 	int	len_b;
 
 	len_a = stack_size(a);
 	len_b = stack_size(b);
-
 	while (a)
 	{
 		a->push_cost = a->index;
-		if (a->above_median == false) // si en dessous de median
+		if (a->above_median == false)
 			a->push_cost = len_a - (a->index);
 		if (a->target_node->above_median == true)
 			a->push_cost += a->target_node->index;
@@ -115,10 +111,10 @@ void	push_cost_analysis(t_stack_node *a, t_stack_node  *b)
 	}
 }
 
-void	find_cheapest(t_stack_node *stack)
+void	find_cheapest(t_stack *stack)
 {
 	long	cheapest;
-	t_stack_node	*cheapest_node;
+	t_stack	*cheapest_node;
 
 	if (!stack)
 		return ;
@@ -134,7 +130,3 @@ void	find_cheapest(t_stack_node *stack)
 	}
 	cheapest_node->cheapest = true;
 }
-
-
-
-

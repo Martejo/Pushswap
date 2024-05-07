@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   sort_size_three.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 13:20:57 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/08 13:22:12 by gemartel         ###   ########.fr       */
+/*   Created: 2023/12/08 16:45:29 by gemartel          #+#    #+#             */
+/*   Updated: 2024/01/03 10:08:16 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isspace(char c)
+#include "../include/push_swap.h"
+
+void	sort_three(t_stack **stack)
 {
-	if  (c == ' ' || c == '\t' || c == '\n' ||
-		 c == '\r' || c == '\f' || c == '\v')
-		 return (1);
-	return (0);
+	t_stack	*max;
+
+	if (!stack)
+		return ;
+	max = find_max(*stack);
+	if (*stack == max)
+		ra(stack, true);
+	else if ((*stack)->next == max)
+		rra(stack, true);
+	if ((*stack)->nbr > (*stack)->next->nbr)
+		sa(stack, true);
 }

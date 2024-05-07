@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_size_three.c                                  :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:45:29 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/22 11:41:12 by gemartel         ###   ########.fr       */
+/*   Created: 2023/12/08 12:13:02 by gemartel          #+#    #+#             */
+/*   Updated: 2024/01/03 10:10:21 by gemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	sort_three(t_stack_node **stack)
+int	main(int argc, char **argv)
 {
-	t_stack_node *max;
+	t_stack	*a;
+	t_stack	*b;
 
-	if (!stack)
-		return ;
-	max = find_max(*stack);
-	if (*stack == max)
-		ra(stack, true); // plus print 
-	else if ((*stack)->next == max)
-		rra(stack, true); // + print
-	if ((*stack)->nbr > (*stack)->next->nbr) //Check if the bottom node is the biggest, but the top node is higher than the second node
-		sa(stack, true); //I
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
+	else if (argc == 2)
+		init_stack(&a, ft_split(argv[1], ' '), true);
+	else
+		init_stack(&a, argv + 1, false);
+	if (!stack_is_sorted(a))
+	{
+		if (stack_size(a) == 2)
+			sa(&a, true);
+		else if (stack_size(a) == 3)
+			sort_three(&a);
+		else
+			sort_stack(&a, &b);
+	}
+	free_stack(&a);
+	return (0);
 }
